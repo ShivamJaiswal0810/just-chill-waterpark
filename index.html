@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#0077B6;--cyan:#00B4D8;--teal:#0096C7;--deep:#023E8A;
+  --aqua:#48CAE4;--light:#90E0EF;--white:#fff;--cream:#F0F9FF;
+  --dark:#03045E;--orange:#FF6B35;--yellow:#FFD60A;--text:#1a1a2e
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(2,62,138,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,180,216,0.3)}
+.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:var(--white);letter-spacing:1px}
+.logo span{color:var(--cyan)}
+.logo small{display:block;font-size:9px;letter-spacing:4px;font-weight:400;color:var(--aqua);text-transform:uppercase}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color 0.3s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{background:linear-gradient(135deg,var(--orange),#ff8c00);color:#fff;padding:10px 28px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:30px;transition:all 0.3s;box-shadow:0 4px 20px rgba(255,107,53,0.4)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,53,0.5)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0 60px}
+.hero-ocean{position:absolute;inset:0;background:linear-gradient(180deg,var(--deep) 0%,var(--blue) 40%,var(--teal) 70%,var(--cyan) 100%)}
+.wave-container{position:absolute;bottom:0;left:0;width:100%;overflow:hidden;line-height:0}
+.wave-container svg{display:block;width:100%}
+.hero-bubbles{position:absolute;inset:0;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.08);animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(100vh) scale(0);opacity:0}50%{opacity:1}100%{transform:translateY(-20vh) scale(1);opacity:0}}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:900px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(10px);padding:8px 20px;border-radius:30px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--aqua);margin-bottom:24px}
+.hero-title{font-weight:900;font-size:clamp(48px,9vw,110px);line-height:0.95;margin-bottom:8px;color:#fff;text-transform:uppercase}
+.hero-title .wave-text{background:linear-gradient(135deg,var(--cyan),var(--aqua),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-family:'Playfair Display',serif;font-size:110%;text-transform:none}
+.hero-tagline{font-size:clamp(13px,2vw,18px);color:rgba(255,255,255,0.8);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:300}
+.hero-location{font-size:14px;color:var(--aqua);margin-bottom:40px;letter-spacing:2px}
+.hero-location span{color:#fff;font-weight:600}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{background:linear-gradient(135deg,var(--orange),#ff8c00);color:#fff;padding:16px 44px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:30px;transition:all 0.3s;box-shadow:0 4px 24px rgba(255,107,53,0.5)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,107,53,0.6)}
+.btn-outline{background:rgba(255,255,255,0.1);color:#fff;padding:16px 44px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:2px solid rgba(255,255,255,0.5);cursor:pointer;border-radius:30px;transition:all 0.3s;backdrop-filter:blur(10px)}
+.btn-outline:hover{background:rgba(255,255,255,0.2);border-color:#fff}
+.hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:36px;font-weight:900;color:#fff;line-height:1}
+.hero-stat-num span{color:var(--cyan)}
+.hero-stat-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:4px}
+
+/* TICKETS */
+.tickets{padding:80px 60px;background:var(--cream)}
+.section-label{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:12px;text-align:center}
+.section-title{font-weight:900;font-size:clamp(32px,5vw,60px);text-align:center;color:var(--dark);margin-bottom:8px;text-transform:uppercase}
+.section-title span{color:var(--blue)}
+.section-sub{text-align:center;font-size:14px;color:#666;margin-bottom:56px;letter-spacing:1px}
+.ticket-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+.ticket-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,119,182,0.1);transition:all 0.3s;position:relative}
+.ticket-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,119,182,0.2)}
+.ticket-card.featured{border:2px solid var(--cyan)}
+.ticket-top{padding:32px 28px;background:linear-gradient(135deg,var(--deep),var(--blue))}
+.ticket-top.orange{background:linear-gradient(135deg,#ff6b35,#ff8c00)}
+.ticket-top.teal{background:linear-gradient(135deg,var(--teal),var(--cyan))}
+.ticket-popular{position:absolute;top:16px;right:16px;background:var(--yellow);color:var(--dark);font-size:9px;font-weight:700;letter-spacing:2px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.ticket-type{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px}
+.ticket-name{font-size:24px;font-weight:900;color:#fff;margin-bottom:4px}
+.ticket-price{font-size:48px;font-weight:900;color:#fff;line-height:1}
+.ticket-price small{font-size:16px;font-weight:400}
+.ticket-per{font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px}
+.ticket-bottom{padding:24px 28px}
+.ticket-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.ticket-feature{display:flex;align-items:center;gap:10px;font-size:13px;color:#444}
+.ticket-feature::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0}
+.ticket-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:10px;transition:all 0.3s}
+.ticket-btn:hover{background:linear-gradient(135deg,var(--deep),var(--blue));transform:translateY(-1px)}
+
+/* RIDES */
+.rides{padding:100px 60px;background:linear-gradient(180deg,var(--dark) 0%,var(--deep) 100%);position:relative;overflow:hidden}
+.rides::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300b4d8' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.rides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1300px;margin:64px auto 0}
+.ride-card{position:relative;overflow:hidden;cursor:pointer;group}
+.ride-card:first-child{grid-column:span 2;grid-row:span 2}
+.ride-visual{background:linear-gradient(135deg,var(--blue),var(--teal));aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:all 0.4s}
+.ride-card:first-child .ride-visual{aspect-ratio:16/10}
+.ride-visual:hover{filter:brightness(1.15)}
+.ride-pattern{position:absolute;inset:0;opacity:0.1}
+.ride-emoji{font-size:clamp(40px,6vw,80px);z-index:1}
+.ride-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(transparent,rgba(2,6,62,0.9));z-index:2}
+.ride-name{font-size:clamp(16px,2.5vw,26px);font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ride-thrill{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:3px 12px;border-radius:20px;font-weight:600}
+.thrill-extreme{background:rgba(255,107,53,0.9);color:#fff}
+.thrill-high{background:rgba(255,214,10,0.9);color:#000}
+.thrill-family{background:rgba(72,202,228,0.9);color:#000}
+.thrill-kids{background:rgba(0,180,216,0.9);color:#fff}
+.ride-note{font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px}
+
+/* VIDEO SECTION */
+.video-section{padding:100px 60px;background:var(--cream)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1200px;margin:64px auto 0}
+.video-card{position:relative;border-radius:20px;overflow:hidden;background:var(--dark);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 20px 60px rgba(0,0,0,0.2);transition:all 0.3s}
+.video-card:hover{transform:scale(1.02)}
+.video-card.large{grid-column:span 2;aspect-ratio:16/7}
+.video-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--deep),var(--teal));opacity:0.8}
+.video-emoji{font-size:clamp(48px,8vw,100px);z-index:1;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.3))}
+.play-btn{position:absolute;width:70px;height:70px;background:rgba(255,255,255,0.95);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:3;transition:all 0.3s;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.play-btn:hover{transform:scale(1.1);background:#fff}
+.play-btn::after{content:'▶';font-size:24px;color:var(--blue);margin-left:4px}
+.video-label{position:absolute;bottom:20px;left:20px;right:20px;z-index:3}
+.video-title{font-size:clamp(14px,2.5vw,22px);font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.video-sub{font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:1px;margin-top:4px}
+.video-note{text-align:center;font-size:13px;color:#888;margin-top:16px;font-style:italic}
+
+/* RESTAURANT */
+.restaurant{padding:100px 60px;background:linear-gradient(135deg,var(--deep) 0%,#0a1628 100%);position:relative}
+.rest-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:1200px;margin:0 auto;overflow:hidden}
+.rest-visual{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:100%;overflow:hidden}
+.rest-img{background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:48px;transition:all 0.3s;min-width:0;overflow:hidden}
+.rest-img:hover{transform:scale(1.05)}
+.rest-img.tall{grid-row:span 2;aspect-ratio:auto}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.food-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px;text-align:center;transition:all 0.3s}
+.food-item:hover{border-color:var(--cyan);background:rgba(0,180,216,0.1)}
+.food-icon{font-size:28px;margin-bottom:8px}
+.food-name{font-size:12px;font-weight:600;color:#fff;letter-spacing:1px}
+.food-price{font-size:11px;color:var(--cyan);margin-top:2px}
+
+/* FACILITIES */
+.facilities-wp{padding:100px 60px;background:var(--cream)}
+.fac-wp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;max-width:1200px;margin:64px auto 0}
+.fac-wp-card{background:#fff;border-radius:16px;padding:28px 20px;text-align:center;box-shadow:0 4px 24px rgba(0,119,182,0.08);transition:all 0.3s;border:1px solid rgba(0,180,216,0.1)}
+.fac-wp-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,119,182,0.15);border-color:var(--cyan)}
+.fac-wp-icon{font-size:40px;margin-bottom:14px;display:block}
+.fac-wp-name{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+.fac-wp-desc{font-size:11px;color:#888;line-height:1.6}
+
+/* REVIEWS */
+.reviews{padding:100px 60px;background:linear-gradient(135deg,var(--deep),var(--dark))}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1200px;margin:64px auto 0}
+.review-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;transition:all 0.3s}
+.review-card:hover{border-color:var(--cyan);background:rgba(0,180,216,0.08)}
+.review-stars{color:var(--yellow);font-size:16px;margin-bottom:12px;letter-spacing:2px}
+.review-text{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.8;font-style:italic;margin-bottom:16px}
+.review-author{font-size:12px;font-weight:700;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
+.review-source{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px}
+.google-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:30px;padding:8px 20px;font-size:12px;color:#fff;font-weight:600;margin-bottom:40px}
+
+/* VISIT */
+.visit{padding:100px 60px;background:var(--cream)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1200px;margin:64px auto 0}
+.visit-map{background:linear-gradient(135deg,var(--blue),var(--deep));border-radius:24px;padding:48px;text-align:center;position:relative;overflow:hidden}
+.visit-map::before{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(72,202,228,0.1) 0%,transparent 60%)}
+.map-icon{font-size:64px;margin-bottom:16px;display:block;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.map-name{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px;text-transform:uppercase}
+.map-address{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:24px}
+.timing-table{width:100%;border-collapse:collapse}
+.timing-table tr{border-bottom:1px solid rgba(255,255,255,0.1)}
+.timing-table td{padding:12px 0;font-size:13px;color:rgba(255,255,255,0.8)}
+.timing-table td:last-child{color:var(--cyan);font-weight:600;text-align:right}
+.contact-cards{display:flex;flex-direction:column;gap:16px}
+.contact-wp-card{background:#fff;border-radius:16px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,119,182,0.08);transition:all 0.3s;border:1px solid rgba(0,180,216,0.1)}
+.contact-wp-card:hover{border-color:var(--cyan);box-shadow:0 8px 32px rgba(0,180,216,0.15)}
+.contact-wp-icon{font-size:32px;flex-shrink:0}
+.contact-wp-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:4px}
+.contact-wp-value{font-size:15px;color:var(--dark);font-weight:600;line-height:1.5}
+
+/* CTA BANNER */
+.cta-banner{padding:80px 60px;background:linear-gradient(135deg,var(--orange),#ff8c00);text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'🌊';font-size:200px;position:absolute;left:-40px;top:-40px;opacity:0.1}
+.cta-banner::after{content:'🌊';font-size:200px;position:absolute;right:-40px;bottom:-40px;opacity:0.1}
+.cta-title{font-size:clamp(32px,6vw,72px);font-weight:900;color:#fff;text-transform:uppercase;margin-bottom:16px;letter-spacing:2px}
+.cta-sub{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:40px;letter-spacing:1px}
+.btn-white{background:#fff;color:var(--orange);padding:18px 56px;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:30px;transition:all 0.3s;box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
+
+/* FOOTER */
+footer{background:var(--dark);padding:60px;border-top:1px solid rgba(0,180,216,0.2)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-logo-text{font-weight:900;font-size:26px;color:#fff;margin-bottom:4px}
+.footer-logo-text span{color:var(--cyan)}
+.footer-tagline{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:2px;margin-bottom:16px}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8}
+.footer-col-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);font-weight:700;margin-bottom:16px}
+.footer-col-links{display:flex;flex-direction:column;gap:10px}
+.footer-col-links a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.3s}
+.footer-col-links a:hover{color:var(--cyan)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px}
+.footer-agency{font-size:11px;color:var(--cyan);letter-spacing:1px}
+
+@media(max-width:900px){
+  nav{padding:14px 20px}.nav-links{display:none}
+  .hero{padding:80px 20px 40px;min-height:auto;padding-top:100px}
+  .hero-stats{gap:24px}
+  .tickets,.rides,.video-section,.restaurant,.facilities-wp,.reviews,.visit,.cta-banner{padding:60px 20px}
+  .rides-grid{grid-template-columns:1fr 1fr}
+  .ride-card:first-child{grid-column:span 2;grid-row:span 1}
+  .video-grid{grid-template-columns:1fr}
+  .video-card.large{grid-column:span 1}
+  .rest-grid,.visit-grid,.footer-top{grid-template-columns:1fr;gap:40px}
+  footer{padding:40px 20px}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+
+<nav>
+  <div class="logo">Just Chill <span>🌊</span><small>A Waterpark & Restaurant · Deoria</small></div>
+  <ul class="nav-links">
+    <li><a href="#rides">Rides</a></li>
+    <li><a href="#tickets">Tickets</a></li>
+    <li><a href="#restaurant">Restaurant</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <button class="nav-cta">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ocean"></div>
+  <div class="hero-bubbles">
+    <div class="bubble" style="width:20px;height:20px;left:10%;animation-duration:8s;animation-delay:0s"></div>
+    <div class="bubble" style="width:35px;height:35px;left:25%;animation-duration:12s;animation-delay:2s"></div>
+    <div class="bubble" style="width:15px;height:15px;left:40%;animation-duration:7s;animation-delay:1s"></div>
+    <div class="bubble" style="width:28px;height:28px;left:60%;animation-duration:10s;animation-delay:3s"></div>
+    <div class="bubble" style="width:22px;height:22px;left:75%;animation-duration:9s;animation-delay:0.5s"></div>
+    <div class="bubble" style="width:40px;height:40px;left:85%;animation-duration:14s;animation-delay:2.5s"></div>
+    <div class="bubble" style="width:18px;height:18px;left:50%;animation-duration:11s;animation-delay:4s"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ 1000+ Happy Visitors · Deoria, UP</div>
+    <h1 class="hero-title">
+      Just<br>
+      <span class="wave-text">Chill</span><br>
+    </h1>
+    <p class="hero-tagline">A Waterpark & Restaurant — Deoria</p>
+    <p class="hero-location">📍 <span>Deoria, Uttar Pradesh</span> · Open all season</p>
+    <div class="hero-btns">
+      <button class="btn-primary">🎟️ Book Tickets</button>
+      <button class="btn-outline">🎢 Explore Rides</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">1000<span>+</span></div><div class="hero-stat-label">Happy Visitors</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">15<span>+</span></div><div class="hero-stat-label">Water Rides</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">⭐4.5</div><div class="hero-stat-label">Google Rating</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">Best in Deoria</div></div>
+    </div>
+  </div>
+  <div class="wave-container">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,30 1440,40 L1440,80 L0,80 Z" fill="#EFF9FF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section class="tickets" id="tickets">
+  <span class="section-label">Entry Passes</span>
+  <h2 class="section-title">Choose Your <span>Ticket</span></h2>
+  <p class="section-sub">Unlimited fun all day — rides, pools, and restaurant access</p>
+  <div class="ticket-grid">
+    <div class="ticket-card">
+      <div class="ticket-top orange">
+        <div class="ticket-type">For Children</div>
+        <div class="ticket-name">Kids Pass</div>
+        <div class="ticket-price">₹<span style="font-size:48px">299</span></div>
+        <div class="ticket-per">per child · below 5 years FREE</div>
+      </div>
+      <div class="ticket-bottom">
+        <div class="ticket-features">
+          <div class="ticket-feature">All kiddie rides access</div>
+          <div class="ticket-feature">Splash pool entry</div>
+          <div class="ticket-feature">Locker facility</div>
+          <div class="ticket-feature">Changing room access</div>
+        </div>
+        <button class="ticket-btn">Book Kids Pass</button>
+      </div>
+    </div>
+    <div class="ticket-card featured">
+      <div class="ticket-popular">⭐ Most Popular</div>
+      <div class="ticket-top">
+        <div class="ticket-type">For Adults</div>
+        <div class="ticket-name">Full Day Pass</div>
+        <div class="ticket-price">₹<span style="font-size:48px">499</span></div>
+        <div class="ticket-per">per person · all rides included</div>
+      </div>
+      <div class="ticket-bottom">
+        <div class="ticket-features">
+          <div class="ticket-feature">All water rides unlimited</div>
+          <div class="ticket-feature">Wave pool + slides</div>
+          <div class="ticket-feature">Locker + changing room</div>
+          <div class="ticket-feature">10% off at restaurant</div>
+          <div class="ticket-feature">Free parking</div>
+        </div>
+        <button class="ticket-btn">Book Full Day</button>
+      </div>
+    </div>
+    <div class="ticket-card">
+      <div class="ticket-top teal">
+        <div class="ticket-type">For Groups</div>
+        <div class="ticket-name">Group Deal</div>
+        <div class="ticket-price">₹<span style="font-size:48px">399</span></div>
+        <div class="ticket-per">per person · min 20 people</div>
+      </div>
+      <div class="ticket-bottom">
+        <div class="ticket-features">
+          <div class="ticket-feature">All rides access</div>
+          <div class="ticket-feature">Dedicated group area</div>
+          <div class="ticket-feature">Group food packages</div>
+          <div class="ticket-feature">Event coordination help</div>
+          <div class="ticket-feature">Corporate bookings welcome</div>
+        </div>
+        <button class="ticket-btn">Book Group</button>
+      </div>
+    </div>
+    <div class="ticket-card">
+      <div class="ticket-top" style="background:linear-gradient(135deg,#6a0dad,#a855f7)">
+        <div class="ticket-type">Birthday / Events</div>
+        <div class="ticket-name">Party Package</div>
+        <div class="ticket-price">₹<span style="font-size:40px">Call Us</span></div>
+        <div class="ticket-per">customised per event</div>
+      </div>
+      <div class="ticket-bottom">
+        <div class="ticket-features">
+          <div class="ticket-feature">Private party area</div>
+          <div class="ticket-feature">Decoration included</div>
+          <div class="ticket-feature">Cake + food package</div>
+          <div class="ticket-feature">DJ music available</div>
+          <div class="ticket-feature">Photography arrangements</div>
+        </div>
+        <button class="ticket-btn" style="background:linear-gradient(135deg,#6a0dad,#a855f7)">Enquire Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RIDES -->
+<section class="rides" id="rides">
+  <div style="text-align:center;margin-bottom:0">
+    <span class="section-label" style="color:var(--cyan)">Heart-Pumping Thrills</span>
+    <h2 class="section-title" style="color:#fff">Our <span style="color:var(--cyan)">Rides</span></h2>
+    <p style="text-align:center;font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:0;letter-spacing:1px">Replace placeholders with actual ride photos</p>
+  </div>
+  <div class="rides-grid">
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#023E8A,#0077B6)">
+        <div class="ride-emoji">🌊</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Wave Pool</div>
+          <span class="ride-thrill thrill-family">👨‍👩‍👧 Family Favourite</span>
+          <div class="ride-note">Artificial ocean waves · All ages</div>
+        </div>
+      </div>
+    </div>
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#C0392B,#E74C3C)">
+        <div class="ride-emoji">🎢</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Speed Slide</div>
+          <span class="ride-thrill thrill-extreme">🔥 Extreme</span>
+        </div>
+      </div>
+    </div>
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#0096C7,#00B4D8)">
+        <div class="ride-emoji">🌀</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Twister Tube</div>
+          <span class="ride-thrill thrill-high">⚡ High Thrill</span>
+        </div>
+      </div>
+    </div>
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#27AE60,#2ECC71)">
+        <div class="ride-emoji">🏄</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Lazy River</div>
+          <span class="ride-thrill thrill-family">😊 Relaxing</span>
+        </div>
+      </div>
+    </div>
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#F39C12,#F1C40F)">
+        <div class="ride-emoji">💦</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Kids Splash Zone</div>
+          <span class="ride-thrill thrill-kids">🧒 Kids Only</span>
+        </div>
+      </div>
+    </div>
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#8E44AD,#9B59B6)">
+        <div class="ride-emoji">🎠</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Rain Dance</div>
+          <span class="ride-thrill thrill-family">🎉 All Ages</span>
+        </div>
+      </div>
+    </div>
+    <div class="ride-card">
+      <div class="ride-visual" style="background:linear-gradient(135deg,#E74C3C,#C0392B)">
+        <div class="ride-emoji">🎯</div>
+        <div class="ride-overlay">
+          <div class="ride-name">Drop Zone</div>
+          <span class="ride-thrill thrill-extreme">🔥 Extreme</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="gallery">
+  <span class="section-label">See It Live</span>
+  <h2 class="section-title">Feel the <span>Experience</span></h2>
+  <p class="section-sub">Real moments from Just Chill — add your best videos here</p>
+  <div class="video-grid">
+    <div class="video-card large">
+      <div class="video-bg" style="background:linear-gradient(135deg,var(--deep),var(--teal))"></div>
+      <div class="video-emoji">🎬</div>
+      <div class="play-btn"></div>
+      <div class="video-label">
+        <div class="video-title">Just Chill — Full Park Tour</div>
+        <div class="video-sub">Embed your main promo video here · YouTube / MP4</div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-bg" style="background:linear-gradient(135deg,#C0392B,var(--blue))"></div>
+      <div class="video-emoji">🌊</div>
+      <div class="play-btn"></div>
+      <div class="video-label">
+        <div class="video-title">Wave Pool Highlights</div>
+        <div class="video-sub">Replace with actual footage</div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-bg" style="background:linear-gradient(135deg,var(--teal),#6a0dad)"></div>
+      <div class="video-emoji">🎢</div>
+      <div class="play-btn"></div>
+      <div class="video-label">
+        <div class="video-title">Rides & Thrills</div>
+        <div class="video-sub">Replace with actual footage</div>
+      </div>
+    </div>
+  </div>
+  <p class="video-note">📹 Replace placeholders with actual park videos for maximum impact</p>
+</section>
+
+<!-- RESTAURANT -->
+<section class="restaurant" id="restaurant">
+  <div class="rest-grid">
+    <div>
+      <span class="section-label" style="color:var(--cyan)">Dine With Us</span>
+      <h2 class="section-title" style="color:#fff">Just Chill <span style="color:var(--cyan)">Restaurant</span></h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.9;margin-bottom:32px">After a day of thrills, sit back and enjoy our multi-cuisine restaurant. From North Indian favourites to fast food and fresh juices — we've got your hunger covered.</p>
+      <div class="food-grid">
+        <div class="food-item"><div class="food-icon">🍕</div><div class="food-name">Pizza & Burgers</div><div class="food-price">From ₹80</div></div>
+        <div class="food-item"><div class="food-icon">🍛</div><div class="food-name">North Indian</div><div class="food-price">From ₹120</div></div>
+        <div class="food-item"><div class="food-icon">🥤</div><div class="food-name">Fresh Juices</div><div class="food-price">From ₹40</div></div>
+        <div class="food-item"><div class="food-icon">🍦</div><div class="food-name">Ice Cream</div><div class="food-price">From ₹30</div></div>
+        <div class="food-item"><div class="food-icon">☕</div><div class="food-name">Beverages</div><div class="food-price">From ₹20</div></div>
+        <div class="food-item"><div class="food-icon">🎂</div><div class="food-name">Birthday Cakes</div><div class="food-price">On order</div></div>
+      </div>
+    </div>
+    <div class="rest-visual">
+      <div class="rest-img" style="font-size:64px">🍽️</div>
+      <div>
+        <div class="rest-img" style="font-size:48px;margin-bottom:12px">🥘</div>
+        <div class="rest-img" style="font-size:48px">🥤</div>
+      </div>
+      <div class="rest-img" style="font-size:48px">🎂</div>
+      <div class="rest-img" style="font-size:48px">🍦</div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities-wp" id="facilities">
+  <span class="section-label">Everything You Need</span>
+  <h2 class="section-title">Park <span>Facilities</span></h2>
+  <div class="fac-wp-grid">
+    <div class="fac-wp-card"><span class="fac-wp-icon">🚗</span><div class="fac-wp-name">Free Parking</div><div class="fac-wp-desc">Large parking area for cars and buses</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">🚿</span><div class="fac-wp-name">Changing Rooms</div><div class="fac-wp-desc">Clean, separate rooms for men and women</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">🔐</span><div class="fac-wp-name">Lockers</div><div class="fac-wp-desc">Secure lockers for your valuables</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">🏥</span><div class="fac-wp-name">First Aid</div><div class="fac-wp-desc">Medical staff on duty at all times</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">🛟</span><div class="fac-wp-name">Lifeguards</div><div class="fac-wp-desc">Trained lifeguards at every pool</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">🍽️</span><div class="fac-wp-name">Restaurant</div><div class="fac-wp-desc">Full multi-cuisine dining inside park</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">🎉</span><div class="fac-wp-name">Event Hosting</div><div class="fac-wp-desc">Birthday parties & corporate events</div></div>
+    <div class="fac-wp-card"><span class="fac-wp-icon">♿</span><div class="fac-wp-name">Accessible</div><div class="fac-wp-desc">Wheelchair accessible entry and paths</div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div style="text-align:center">
+    <span class="section-label" style="color:var(--cyan)">What People Say</span>
+    <h2 class="section-title" style="color:#fff">1000+ <span style="color:var(--cyan)">Happy Visitors</span></h2>
+    <div class="google-badge">⭐ 4.5 Rating on Google Maps · 1000+ Reviews</div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Best waterpark in the entire region! Came with family and everyone had a blast. The wave pool is amazing and the staff is very helpful."</div>
+      <div class="review-author">Rahul Sharma</div>
+      <div class="review-source">Google Review · Gorakhpur</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Visited with office colleagues for a team outing. Perfect place! Group packages are very affordable and the rides are thrilling."</div>
+      <div class="review-author">Priya Verma</div>
+      <div class="review-source">Google Review · Deoria</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★⭐</div>
+      <div class="review-text">"My kids absolutely loved it. The splash zone is perfect for children. Food at the restaurant was also very tasty and reasonably priced."</div>
+      <div class="review-author">Amit Gupta</div>
+      <div class="review-source">Google Review · Varanasi</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div style="text-align:center;margin-bottom:0">
+    <span class="section-label">Plan Your Visit</span>
+    <h2 class="section-title">Get Here. <span>Chill.</span></h2>
+  </div>
+  <div class="visit-grid">
+    <div class="visit-map">
+      <span class="map-icon">📍</span>
+      <div class="map-name">Just Chill Waterpark</div>
+      <div class="map-address">Deoria, Uttar Pradesh<br>Near [landmark] · PIN 274001</div>
+      <button class="btn-primary" style="margin-bottom:32px">Get Directions on Maps</button>
+      <table class="timing-table">
+        <tr><td>Monday – Friday</td><td>9:00 AM – 7:00 PM</td></tr>
+        <tr><td>Saturday – Sunday</td><td>8:00 AM – 8:00 PM</td></tr>
+        <tr><td>Public Holidays</td><td>8:00 AM – 8:00 PM</td></tr>
+      </table>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-wp-card">
+        <div class="contact-wp-icon">📞</div>
+        <div><div class="contact-wp-label">Reservations & Enquiry</div><div class="contact-wp-value">+91 XXXXX XXXXX<br>WhatsApp bookings welcome</div></div>
+      </div>
+      <div class="contact-wp-card">
+        <div class="contact-wp-icon">📸</div>
+        <div><div class="contact-wp-label">Follow Us</div><div class="contact-wp-value">@justchilldeoria<br>Instagram · Facebook</div></div>
+      </div>
+      <div class="contact-wp-card">
+        <div class="contact-wp-icon">🎉</div>
+        <div><div class="contact-wp-label">Corporate & Group Bookings</div><div class="contact-wp-value">Special rates for groups of 20+<br>Call us for custom packages</div></div>
+      </div>
+      <div class="contact-wp-card">
+        <div class="contact-wp-icon">🅿️</div>
+        <div><div class="contact-wp-label">Parking</div><div class="contact-wp-value">Free parking for all visitors<br>Bus & tempo parking available</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-title">Summer is Calling 🌊</div>
+  <div class="cta-sub">Book your tickets now and make memories that last forever</div>
+  <button class="btn-white">🎟️ Book Tickets Now</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-text">Just <span>Chill</span> 🌊</div>
+      <div class="footer-tagline">A Waterpark & Restaurant · Deoria, UP</div>
+      <div class="footer-desc">Deoria's #1 waterpark and entertainment destination. Unlimited fun, thrilling rides, and delicious food — all in one place.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <div class="footer-col-links">
+        <a href="#rides">Water Rides</a>
+        <a href="#tickets">Book Tickets</a>
+        <a href="#restaurant">Restaurant</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#visit">Visit Us</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-links">
+        <a href="#">+91 XXXXX XXXXX</a>
+        <a href="#">WhatsApp Us</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Google Maps</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Just Chill Waterpark & Restaurant, Deoria · All rights reserved</div>
+    <div class="footer-agency">Designed & Developed by [Your Agency Name]</div>
+  </div>
+</footer>
